@@ -6,6 +6,7 @@ type Transaction struct {
 	BlockHash        string `json:"blockHash"`
 	BlockNumber      string `json:"blockNumber"`
 	TransactionIndex string `json:"transactionIndex"`
+	ChainID          string `json:"chainId"`
 	From             string `json:"from"`
 	To               string `json:"to"`
 	Value            string `json:"value"`

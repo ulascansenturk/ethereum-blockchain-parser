@@ -24,16 +24,7 @@ type ClientResponse struct {
 	ID      int             `json:"id"`
 	JSONRPC string          `json:"jsonrpc"`
 	Result  json.RawMessage `json:"result"`
-	Error   *RPCError       `json:"error"`
-}
-
-type RPCError struct {
-	Code    int    `json:"code"`
-	Message string `json:"message"`
-}
-
-func (err *RPCError) Error() string {
-	return fmt.Sprintf("error %d: %s", err.Code, err.Message)
+	Error   *error          `json:"error"`
 }
 
 func NewEthClient(url string) *EthClient {
@@ -41,7 +32,6 @@ func NewEthClient(url string) *EthClient {
 		url: url,
 	}
 }
-
 func (rpc *EthClient) Call(method string, params ...interface{}) (json.RawMessage, error) {
 	request := RequestBody{
 		ID:      1,
